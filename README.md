@@ -1,1 +1,386 @@
 # tiss'olation.github.io
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Tiss'Olation — IsoText, l'isolant qui donne une seconde vie au linge</title>
+<meta name="description" content="Tiss'Olation transforme le linge professionnel en fin de vie en IsoText, un isolant biosourcé thermo-acoustique pour la rénovation des bâtiments. Projet étudiant, Hackathon Polytech-PEPITE 2026." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Poppins:wght@600;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --ink:#16302b; --ink-soft:#46574f; --line:#e4e9e3;
+    --green:#2f8f5b; --green-d:#1f6b41; --leaf:#7cc08a;
+    --blue:#2e75b6; --sand:#f6f4ee; --paper:#ffffff;
+    --shadow:0 18px 50px rgba(20,48,40,.10);
+    --radius:18px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{font-family:'Inter',system-ui,sans-serif;color:var(--ink);background:var(--paper);line-height:1.65;-webkit-font-smoothing:antialiased}
+  h1,h2,h3,.brand{font-family:'Poppins',sans-serif;line-height:1.15;letter-spacing:-.02em}
+  .wrap{width:min(1140px,92%);margin:0 auto}
+  section{padding:96px 0}
+  .eyebrow{font-weight:600;color:var(--green);text-transform:uppercase;letter-spacing:.14em;font-size:.78rem;margin-bottom:14px}
+  h2{font-size:clamp(1.7rem,3.4vw,2.5rem);margin-bottom:18px}
+  .lead{color:var(--ink-soft);font-size:1.08rem;max-width:60ch}
+  a{color:inherit;text-decoration:none}
+
+  /* HEADER */
+  header{position:sticky;top:0;z-index:50;background:rgba(255,255,255,.86);backdrop-filter:blur(10px);border-bottom:1px solid transparent;transition:.3s}
+  header.scrolled{border-bottom:1px solid var(--line);box-shadow:0 6px 22px rgba(20,48,40,.06)}
+  .nav{display:flex;align-items:center;justify-content:space-between;height:72px}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:800;font-size:1.22rem;color:var(--ink)}
+  .brand .o{color:var(--green)}
+  .logo{width:34px;height:34px;flex:0 0 auto}
+  .menu{display:flex;gap:30px;align-items:center}
+  .menu a{font-weight:500;color:var(--ink-soft);font-size:.96rem;transition:.2s}
+  .menu a:hover{color:var(--green)}
+  .btn{display:inline-block;background:var(--green);color:#fff;padding:12px 22px;border-radius:999px;font-weight:600;font-size:.95rem;border:none;cursor:pointer;transition:.25s;box-shadow:0 10px 24px rgba(47,143,91,.28)}
+  .btn:hover{background:var(--green-d);transform:translateY(-2px)}
+  .btn.ghost{background:transparent;color:var(--green);box-shadow:none;border:1.6px solid var(--leaf)}
+  .btn.ghost:hover{background:#eaf5ee;color:var(--green-d)}
+  .burger{display:none;background:none;border:none;cursor:pointer;width:40px;height:40px}
+  .burger span{display:block;width:22px;height:2.4px;background:var(--ink);margin:5px auto;border-radius:2px;transition:.3s}
+
+  /* HERO */
+  .hero{position:relative;overflow:hidden;background:
+      radial-gradient(900px 500px at 80% -10%,#dff0e4 0,transparent 60%),
+      linear-gradient(160deg,#f7faf6 0%,#eef6f0 55%,#e7f1ff 100%);padding:84px 0 96px}
+  .hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:50px;align-items:center}
+  .hero h1{font-size:clamp(2.3rem,5.2vw,3.5rem);font-weight:800}
+  .hero h1 .hl{color:var(--green)}
+  .hero p.tag{font-size:1.2rem;color:var(--ink-soft);margin:20px 0 14px;max-width:46ch}
+  .pill{display:inline-flex;align-items:center;gap:8px;background:#fff;border:1px solid var(--line);color:var(--green-d);font-weight:600;font-size:.82rem;padding:7px 14px;border-radius:999px;margin-bottom:22px}
+  .pill .dot{width:8px;height:8px;border-radius:50%;background:var(--green)}
+  .cta{display:flex;gap:14px;flex-wrap:wrap;margin-top:30px}
+  .stats{display:flex;gap:14px;flex-wrap:wrap;margin-top:38px}
+  .stat{background:rgba(255,255,255,.7);border:1px solid var(--line);border-radius:14px;padding:14px 18px;min-width:130px}
+  .stat b{font-family:'Poppins';font-size:1.5rem;color:var(--green-d);display:block}
+  .stat span{font-size:.82rem;color:var(--ink-soft)}
+  .hero-card{background:#fff;border-radius:24px;box-shadow:var(--shadow);padding:30px;position:relative}
+  .hero-card .panel{height:235px;border-radius:16px;background:linear-gradient(180deg,#eaf6ff,#f3f8ee);position:relative;overflow:hidden}
+  .hero-card .panel svg.scene{position:absolute;inset:0;width:100%;height:100%}
+  .chip{position:absolute;background:#fff;border-radius:12px;padding:9px 13px;font-size:.8rem;font-weight:600;box-shadow:0 8px 22px rgba(20,48,40,.12);display:flex;gap:7px;align-items:center}
+  .chip svg{width:16px;height:16px}
+  .hero-card h3{margin:22px 0 6px;font-size:1.15rem}
+  .hero-card p{color:var(--ink-soft);font-size:.94rem}
+
+  /* GENERIC SECTIONS */
+  .alt{background:var(--sand)}
+  .grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:42px}
+  .grid4{display:grid;grid-template-columns:repeat(4,1fr);gap:20px;margin-top:42px}
+  .card{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px;transition:.3s}
+  .card:hover{transform:translateY(-5px);box-shadow:var(--shadow);border-color:transparent}
+  .ico{width:50px;height:50px;border-radius:13px;display:flex;align-items:center;justify-content:center;background:#e9f5ee;margin-bottom:16px}
+  .ico svg{width:26px;height:26px;stroke:var(--green-d)}
+  .card h3{font-size:1.12rem;margin-bottom:8px}
+  .card p{color:var(--ink-soft);font-size:.95rem}
+
+  .split{display:grid;grid-template-columns:1fr 1fr;gap:50px;align-items:center}
+  .stack{display:flex;flex-direction:column;gap:16px;margin-top:10px}
+  .row{display:flex;gap:14px;align-items:flex-start}
+  .row .num{flex:0 0 auto;width:34px;height:34px;border-radius:10px;background:var(--green);color:#fff;font-family:'Poppins';font-weight:700;display:flex;align-items:center;justify-content:center}
+  .row h4{font-size:1.02rem;margin-bottom:2px}
+  .row p{color:var(--ink-soft);font-size:.93rem}
+  .figure{background:linear-gradient(150deg,#eaf5ee,#e7f1ff);border-radius:24px;padding:34px;border:1px solid var(--line)}
+  .figure .big{font-family:'Poppins';font-weight:800;font-size:3rem;color:var(--green-d);line-height:1}
+  .figure .lab{color:var(--ink-soft);margin-bottom:22px}
+
+  /* AUDIENCE */
+  .aud{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:42px}
+  .aud .card .tagm{display:inline-block;font-size:.74rem;font-weight:600;color:var(--blue);background:#e7f1ff;padding:4px 10px;border-radius:999px;margin-bottom:12px}
+
+  /* TEAM */
+  .team{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;margin-top:42px}
+  .member{background:#fff;border:1px solid var(--line);border-radius:16px;padding:22px;text-align:center;transition:.3s}
+  .member:hover{transform:translateY(-4px);box-shadow:var(--shadow)}
+  .avatar{width:62px;height:62px;border-radius:50%;margin:0 auto 12px;display:flex;align-items:center;justify-content:center;font-family:'Poppins';font-weight:700;color:#fff;font-size:1.2rem}
+  .member b{display:block;font-size:1rem}
+  .member .role{color:var(--green-d);font-size:.86rem;font-weight:600;margin-top:3px}
+  .member .disc{color:var(--ink-soft);font-size:.8rem;margin-top:2px}
+
+  /* STEPS */
+  .steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:20px;margin-top:46px}
+  .step{background:#fff;border:1px solid var(--line);border-radius:var(--radius);padding:26px;transition:.3s}
+  .step:hover{transform:translateY(-5px);box-shadow:var(--shadow);border-color:transparent}
+  .step .n{width:38px;height:38px;border-radius:11px;background:var(--green);color:#fff;font-family:'Poppins';font-weight:700;display:flex;align-items:center;justify-content:center;margin-bottom:14px}
+  .step h3{font-size:1.05rem;margin-bottom:6px}
+  .step p{color:var(--ink-soft);font-size:.92rem}
+  .loopnote{display:flex;align-items:center;gap:10px;justify-content:center;margin-top:28px;color:var(--green-d);font-weight:600;font-size:.95rem;text-align:center}
+  .banner{margin-top:34px;background:linear-gradient(180deg,#f4f8ee,#eef6f0);border:1px solid var(--line);border-radius:18px;padding:18px 24px}
+  .banner svg{width:100%;height:auto;display:block}
+
+  /* CONTACT */
+  .contact{background:linear-gradient(160deg,#16302b,#1f513c);color:#dfeee6}
+  .contact h2{color:#fff}
+  .contact .lead{color:#bcd6c8}
+  .cform{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:34px;max-width:680px}
+  .cform .full{grid-column:1/-1}
+  .cform input,.cform textarea{width:100%;padding:14px 16px;border-radius:12px;border:1px solid rgba(255,255,255,.18);background:rgba(255,255,255,.06);color:#fff;font-family:inherit;font-size:.95rem}
+  .cform input::placeholder,.cform textarea::placeholder{color:#9fc4b1}
+  .cform textarea{min-height:120px;resize:vertical}
+  .cform button{justify-self:start}
+  .ok{display:none;margin-top:16px;background:rgba(124,192,138,.18);border:1px solid var(--leaf);padding:12px 16px;border-radius:10px;color:#dff3e6;font-size:.92rem}
+
+  /* FOOTER */
+  footer{background:#0f231f;color:#9fb6ab;padding:46px 0 30px;font-size:.9rem}
+  .fgrid{display:flex;justify-content:space-between;gap:30px;flex-wrap:wrap;align-items:center}
+  .footer-brand{color:#fff;font-family:'Poppins';font-weight:700;font-size:1.1rem}
+  footer .small{font-size:.8rem;color:#7d958b;margin-top:6px;max-width:54ch}
+
+  /* reveal */
+  .reveal{opacity:0;transform:translateY(24px);transition:.7s cubic-bezier(.2,.7,.2,1)}
+  .reveal.in{opacity:1;transform:none}
+
+  @media(max-width:880px){
+    .hero-grid,.split{grid-template-columns:1fr}
+    .grid3,.grid4,.aud,.team{grid-template-columns:repeat(2,1fr)}
+    .menu{position:fixed;inset:72px 0 auto 0;background:#fff;flex-direction:column;gap:0;padding:8px 0;border-bottom:1px solid var(--line);transform:translateY(-130%);transition:.35s;box-shadow:var(--shadow)}
+    .menu.open{transform:none}
+    .menu a{padding:14px 24px;width:100%}
+    .menu .btn{margin:10px 24px;text-align:center}
+    .burger{display:block}
+    .cform{grid-template-columns:1fr}
+  }
+  @media(max-width:520px){.grid3,.grid4,.aud,.team{grid-template-columns:1fr}section{padding:70px 0}}
+</style>
+</head>
+<body>
+
+<header id="top">
+  <div class="wrap nav">
+    <a class="brand" href="#top">
+      <svg class="logo" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <rect x="3" y="3" width="42" height="42" rx="12" fill="#2f8f5b"/>
+        <path d="M14 17h20M14 24h20M14 31h20" stroke="#fff" stroke-width="2.4" stroke-linecap="round"/>
+        <path d="M24 11c5 4 5 9 0 13-5 4-5 9 0 13" stroke="#cdeccf" stroke-width="2.4" stroke-linecap="round"/>
+      </svg>
+      <span>Tiss<span class="o">'O</span>lation</span>
+    </a>
+    <nav class="menu" id="menu">
+      <a href="#projet">Le projet</a>
+      <a href="#solution">La solution</a>
+      <a href="#benefices">Bénéfices</a>
+      <a href="#equipe">L'équipe</a>
+      <a href="#demarche">Démarche</a>
+      <a class="btn" href="#contact">Nous contacter</a>
+    </nav>
+    <button class="burger" id="burger" aria-label="Menu"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="pill"><span class="dot"></span>Économie circulaire · Souveraineté · Frugalité</span>
+      <h1>L'isolant qui donne une <span class="hl">seconde vie au linge</span>.</h1>
+      <p class="tag">Tiss'Olation transforme le linge professionnel en fin de vie en <b>IsoText</b>, un panneau isolant biosourcé thermo-acoustique pour la rénovation des bâtiments.</p>
+      <div class="cta">
+        <a class="btn" href="#solution">Découvrir IsoText</a>
+        <a class="btn ghost" href="#demarche">Notre démarche</a>
+      </div>
+      <div class="stats">
+        <div class="stat"><b>1,5 Mt</b><span>de textiles recyclables/an en France</span></div>
+        <div class="stat"><b>~110 kt</b><span>seulement recyclées aujourd'hui</span></div>
+        <div class="stat"><b>2025</b><span>obligation de recyclage (loi AGEC)</span></div>
+      </div>
+    </div>
+    <div class="hero-card reveal">
+      <div class="panel">
+        <svg class="scene" viewBox="0 0 420 235" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid meet">
+          <circle cx="358" cy="46" r="22" fill="#ffd66b"/>
+          <g stroke="#ffd66b" stroke-width="3" stroke-linecap="round"><line x1="358" y1="12" x2="358" y2="4"/><line x1="392" y1="46" x2="400" y2="46"/><line x1="382" y1="22" x2="388" y2="16"/></g>
+          <path d="M0 185 Q120 152 230 178 T420 168 L420 235 L0 235 Z" fill="#cfe8d2"/>
+          <path d="M0 205 Q150 182 280 200 T420 196 L420 235 L0 235 Z" fill="#bfe0c4"/>
+          <g><ellipse cx="58" cy="152" rx="18" ry="32" fill="#efd9b6"/><ellipse cx="58" cy="152" rx="8" ry="15" fill="#e9a23b"/><rect x="58" y="120" width="46" height="64" fill="#f3e3c6"/><ellipse cx="104" cy="152" rx="18" ry="32" fill="#f7ecd6"/></g>
+          <g><rect x="150" y="120" width="150" height="92" rx="6" fill="#fbf6ec" stroke="#e7dcc7" stroke-width="2"/><path d="M140 122 L225 72 L310 122 Z" fill="#2f8f5b"/><path d="M225 72 L310 122 L298 122 L225 80 Z" fill="#1f6b41"/><rect x="210" y="162" width="30" height="50" rx="3" fill="#7cc08a"/><circle cx="233" cy="188" r="2.4" fill="#1f6b41"/><rect x="256" y="140" width="30" height="28" rx="3" fill="#bfe6ff" stroke="#9cc7e6" stroke-width="2"/><rect x="158" y="132" width="36" height="74" rx="3" fill="#ffffff" stroke="#e0c9a8" stroke-width="1.5"/><g stroke="#e9a23b" stroke-width="3" fill="none" stroke-linecap="round"><path d="M160 142 q9 -7 18 0 t18 0"/><path d="M160 154 q9 -7 18 0 t18 0"/><path d="M160 166 q9 -7 18 0 t18 0"/><path d="M160 178 q9 -7 18 0 t18 0"/><path d="M160 190 q9 -7 18 0 t18 0"/></g></g>
+          <g fill="#3fa67c"><path d="M330 198 q14 -22 30 -16 q-4 20 -30 16 Z"/><path d="M120 202 q-12 -18 -26 -12 q4 17 26 12 Z"/></g>
+        </svg>
+        <span class="chip" style="top:16px;left:16px"><svg viewBox="0 0 24 24" fill="none" stroke="#2f8f5b" stroke-width="2"><path d="M4 7h16M4 12h16M4 17h16"/></svg>Linge recyclé</span>
+        <span class="chip" style="bottom:16px;right:16px"><svg viewBox="0 0 24 24" fill="none" stroke="#2e75b6" stroke-width="2"><path d="M12 3l8 4v6c0 5-3.5 7-8 8-4.5-1-8-3-8-8V7z"/></svg>Biosourcé</span>
+      </div>
+      <h3>IsoText</h3>
+      <p>Un isolant fabriqué localement, à partir d'une matière homogène déjà disponible, pensé pour le confort d'été et la sobriété.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEME -->
+<section id="projet">
+  <div class="wrap">
+    <div class="eyebrow reveal">Le constat</div>
+    <h2 class="reveal">Une montagne de textile gaspillée, une filière sous tension</h2>
+    <p class="lead reveal">Chaque année en France, des centaines de milliers de tonnes de linge professionnel (hôpitaux, hôtellerie, blanchisseries) sont jetées ou incinérées une fois usées. Pourtant, cette matière est homogène, de bonne qualité, et désormais soumise à une obligation de recyclage. Le débouché manque : c'est là que nous intervenons.</p>
+    <div class="grid3">
+      <div class="card reveal">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M3 6h18l-2 13H5L3 6z"/><path d="M9 6V4h6v2"/></svg></div>
+        <h3>Un gisement sous-exploité</h3>
+        <p>Une large part du textile en fin de vie n'est pas recyclée faute de débouchés industriels suffisants.</p>
+      </div>
+      <div class="card reveal">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 3v18M5 8l7-5 7 5"/></svg></div>
+        <h3>Une obligation réglementaire</h3>
+        <p>Depuis 2025, les acteurs doivent recycler leurs textiles usagés. Ils cherchent des solutions locales.</p>
+      </div>
+      <div class="card reveal">
+        <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M3 12h4l3 8 4-16 3 8h4"/></svg></div>
+        <h3>Un besoin de rénovation</h3>
+        <p>Le bâtiment ancien a besoin d'isolants sains, bas carbone et performants en confort d'été.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOLUTION -->
+<section id="solution" class="alt">
+  <div class="wrap">
+    <div class="split">
+      <div>
+        <div class="eyebrow reveal">Notre solution</div>
+        <h2 class="reveal">IsoText, l'isolant biosourcé issu du linge recyclé</h2>
+        <p class="lead reveal">Nous récupérons le linge professionnel en fin de vie auprès des blanchisseries et des loueurs, puis nous le transformons localement en panneaux isolants. Notre cœur de métier : un traitement du textile qui lui permet d'atteindre les normes d'isolation, en améliorant ce que proposent les solutions actuelles.</p>
+        <div class="stack">
+          <div class="row reveal"><div class="num">1</div><div><h4>Une matière récupérée</h4><p>Un linge homogène, déjà décontaminé, collecté près de chez nous.</p></div></div>
+          <div class="row reveal"><div class="num">2</div><div><h4>Une production locale et frugale</h4><p>Une unité de proximité, duplicable, à faible empreinte.</p></div></div>
+          <div class="row reveal"><div class="num">3</div><div><h4>Conforme aux normes</h4><p>Un traitement pensé pour les exigences thermiques, acoustiques et de sécurité incendie.</p></div></div>
+        </div>
+      </div>
+      <div class="figure reveal">
+        <div class="big">100 %</div>
+        <div class="lab">de la matière issue de linge professionnel récupéré</div>
+        <div class="big">0</div>
+        <div class="lab">déchet textile envoyé à l'incinération dans notre modèle</div>
+        <div class="big">Local</div>
+        <div class="lab">une collecte et une production ancrées sur le territoire</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFICES -->
+<section id="benefices">
+  <div class="wrap">
+    <div class="eyebrow reveal">Pourquoi IsoText</div>
+    <h2 class="reveal">Quatre bénéfices, une seule conviction</h2>
+    <div class="grid4">
+      <div class="card reveal"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 21s-7-4.5-7-10a7 7 0 0114 0c0 5.5-7 10-7 10z"/><path d="M9 11l2 2 4-4"/></svg></div><h3>Écologique</h3><p>Un déchet devient une ressource, avec un faible carbone embarqué.</p></div>
+      <div class="card reveal"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M3 21V8l9-5 9 5v13"/><path d="M9 21v-6h6v6"/></svg></div><h3>Souverain</h3><p>Une matière et une production françaises, au service de la réindustrialisation.</p></div>
+      <div class="card reveal"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><circle cx="12" cy="10" r="3"/><path d="M12 2a8 8 0 00-8 8c0 6 8 12 8 12s8-6 8-12a8 8 0 00-8-8z"/></svg></div><h3>Local & circulaire</h3><p>Une collecte et une fabrication de proximité, créatrices d'emplois.</p></div>
+      <div class="card reveal"><div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke-width="2"><path d="M12 3v2M12 19v2M3 12h2M19 12h2M6 6l1.5 1.5M16.5 16.5L18 18"/><circle cx="12" cy="12" r="4"/></svg></div><h3>Confortable</h3><p>Un isolant thermo-acoustique, pensé pour le confort d'été.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- POUR QUI -->
+<section id="pourqui" class="alt">
+  <div class="wrap">
+    <div class="eyebrow reveal">À qui s'adresse IsoText</div>
+    <h2 class="reveal">Un produit utile à toute une chaîne</h2>
+    <div class="aud">
+      <div class="card reveal"><span class="tagm">Clients</span><h3>Artisans RGE</h3><p>Un isolant biosourcé valorisant pour les chantiers de rénovation énergétique.</p></div>
+      <div class="card reveal"><span class="tagm">Clients</span><h3>Bailleurs sociaux</h3><p>Une solution responsable et locale pour rénover le parc ancien.</p></div>
+      <div class="card reveal"><span class="tagm">Partenaires</span><h3>Blanchisseries & loueurs</h3><p>Un débouché local pour leur linge en fin de vie, en phase avec leurs obligations.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- EQUIPE -->
+<section id="equipe">
+  <div class="wrap">
+    <div class="eyebrow reveal">L'équipe</div>
+    <h2 class="reveal">Huit étudiants, cinq spécialités, un projet</h2>
+    <p class="lead reveal">Une équipe pluridisciplinaire de l'école d'ingénieurs Polytech Clermont, réunie le temps du Hackathon Entrepreneuriat Polytech-PEPITE 2026.</p>
+    <div class="team">
+      <div class="member reveal"><div class="avatar" style="background:#2f8f5b">HB</div><b>Honorin Biensan</b><div class="role">Chef de projet</div><div class="disc">Génie civil</div></div>
+      <div class="member reveal"><div class="avatar" style="background:#2e75b6">CB</div><b>Clément Bousquet</b><div class="role">Produit & bâtiment</div><div class="disc">Génie civil</div></div>
+      <div class="member reveal"><div class="avatar" style="background:#5b9bd5">LM</div><b>Léa Mazzoran</b><div class="role">Performance & réglementaire</div><div class="disc">Génie civil</div></div>
+      <div class="member reveal"><div class="avatar" style="background:#70ad47">ÉG</div><b>Éloïse Godbert</b><div class="role">Matériau & échantillon</div><div class="disc">Génie biologique</div></div>
+      <div class="member reveal"><div class="avatar" style="background:#3fa67c">MM</div><b>Marie Milanese</b><div class="role">Matériau & hygiène</div><div class="disc">Génie biologique</div></div>
+      <div class="member reveal"><div class="avatar" style="background:#7b68b6">AC</div><b>Arman Ceylan</b><div class="role">Prototype & tri intelligent</div><div class="disc">Génie électrique</div></div>
+      <div class="member reveal"><div class="avatar" style="background:#ed7d31">UA</div><b>Ulrich Azanledji</b><div class="role">Données & IA</div><div class="disc">Maths appliquées</div></div>
+      <div class="member reveal"><div class="avatar" style="background:#c0504d">CS</div><b>Chloé Sage</b><div class="role">Communication & pitch</div><div class="disc">Génie physique</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- DEMARCHE -->
+<section id="demarche">
+  <div class="wrap">
+    <div class="eyebrow reveal">Comment ça marche</div>
+    <h2 class="reveal">De la benne au bâtiment, une boucle locale</h2>
+    <p class="lead reveal">Notre modèle est circulaire : ce qui était un déchet redevient une ressource utile, sans quitter le territoire.</p>
+    <div class="banner reveal">
+      <svg viewBox="0 0 900 170" xmlns="http://www.w3.org/2000/svg">
+        <path d="M150 120 C 320 165, 580 165, 750 120" fill="none" stroke="#7cc08a" stroke-width="3" stroke-dasharray="2 9" stroke-linecap="round"/>
+        <text x="450" y="160" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" fill="#2f8f5b" font-weight="600">Une boucle locale</text>
+        <g transform="translate(110,42)"><rect x="-34" y="22" width="68" height="14" rx="3" fill="#e9a23b"/><rect x="-30" y="10" width="60" height="14" rx="3" fill="#f0b75e"/><rect x="-26" y="-2" width="52" height="14" rx="3" fill="#efd9b6"/><text x="0" y="60" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" fill="#46574f" font-weight="600">Linge collecté</text></g>
+        <g stroke="#2f8f5b" stroke-width="3" fill="#2f8f5b"><line x1="205" y1="55" x2="335" y2="55" stroke-linecap="round"/><path d="M335 55 l-12 -6 l0 12 Z" stroke="none"/></g>
+        <g transform="translate(450,42)"><rect x="-34" y="2" width="68" height="44" rx="4" fill="#2f8f5b"/><rect x="-12" y="16" width="14" height="14" fill="#cdeccf"/><rect x="8" y="16" width="14" height="14" fill="#cdeccf"/><circle cx="0" cy="-12" r="11" fill="none" stroke="#1f6b41" stroke-width="3"/><circle cx="0" cy="-12" r="3" fill="#1f6b41"/><text x="0" y="62" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" fill="#46574f" font-weight="600">Traité aux normes</text></g>
+        <g stroke="#2f8f5b" stroke-width="3" fill="#2f8f5b"><line x1="545" y1="55" x2="675" y2="55" stroke-linecap="round"/><path d="M675 55 l-12 -6 l0 12 Z" stroke="none"/></g>
+        <g transform="translate(785,40)"><rect x="-28" y="14" width="56" height="34" rx="3" fill="#fbf6ec" stroke="#e7dcc7" stroke-width="2"/><path d="M-34 16 L0 -8 L34 16 Z" fill="#2e75b6"/><rect x="-8" y="28" width="16" height="20" fill="#7cc08a"/><text x="0" y="62" text-anchor="middle" font-family="Inter,sans-serif" font-size="13" fill="#46574f" font-weight="600">Bâtiment isolé</text></g>
+      </svg>
+    </div>
+    <div class="steps">
+      <div class="step reveal"><div class="n">1</div><h3>Collecte</h3><p>Nous récupérons le linge professionnel en fin de vie auprès des blanchisseries et des loueurs.</p></div>
+      <div class="step reveal"><div class="n">2</div><h3>Traitement aux normes</h3><p>Le linge est traité pour atteindre les exigences d'un isolant performant et sûr, en améliorant les solutions actuelles.</p></div>
+      <div class="step reveal"><div class="n">3</div><h3>Fabrication locale</h3><p>Une unité de proximité, frugale et duplicable, le transforme en panneaux IsoText.</p></div>
+      <div class="step reveal"><div class="n">4</div><h3>Mise en œuvre</h3><p>IsoText isole les bâtiments en rénovation, posé par les artisans du territoire.</p></div>
+    </div>
+    <div class="loopnote reveal">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#1f6b41" stroke-width="2"><path d="M4 12a8 8 0 018-8 8 8 0 016 2.7L23 9"/><path d="M20 12a8 8 0 01-8 8 8 8 0 01-6-2.7L1 15"/></svg>
+      Une boucle vertueuse, du linge usagé à l'isolant performant.
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact">
+  <div class="wrap">
+    <div class="eyebrow" style="color:#7cc08a">Contact</div>
+    <h2>Parlons de votre projet de rénovation</h2>
+    <p class="lead">Vous êtes artisan, bailleur, blanchisserie ou partenaire potentiel ? Écrivez-nous, nous revenons vers vous rapidement.</p>
+    <form class="cform" id="cform">
+      <input type="text" placeholder="Votre nom" required />
+      <input type="text" placeholder="Organisation" />
+      <input class="full" type="email" placeholder="Votre e-mail" required />
+      <textarea class="full" placeholder="Votre message"></textarea>
+      <button class="btn" type="submit">Envoyer</button>
+    </form>
+    <div class="ok" id="ok">Merci, votre message a bien été pris en compte. (Démonstration, projet étudiant.)</div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap fgrid">
+    <div>
+      <div class="footer-brand">Tiss'Olation</div>
+      <p class="small">Projet étudiant développé dans le cadre du Hackathon Entrepreneuriat Polytech-PEPITE 2026 (Clermont). Tiss'Olation et IsoText sont des noms de projet ; ce site est une démonstration et ne constitue pas une offre commerciale réelle.</p>
+      <p class="small">Conformément à notre politique de gestion de l'information, ce site ne publie aucun élément technique sensible (procédé, méthode de tri, performances).</p>
+    </div>
+    <div style="text-align:right">
+      <a href="#top" style="color:#cfe6da">Retour en haut</a>
+      <p class="small">© 2026 Équipe 07 · Polytech Clermont</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // header shadow on scroll
+  const head=document.querySelector('header');
+  addEventListener('scroll',()=>head.classList.toggle('scrolled',scrollY>10));
+  // mobile menu
+  const burger=document.getElementById('burger'),menu=document.getElementById('menu');
+  burger.addEventListener('click',()=>menu.classList.toggle('open'));
+  menu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>menu.classList.remove('open')));
+  // reveal on scroll
+  const io=new IntersectionObserver((es)=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target);}}),{threshold:.14});
+  document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  // contact demo
+  document.getElementById('cform').addEventListener('submit',e=>{e.preventDefault();e.target.reset();document.getElementById('ok').style.display='block';});
+</script>
+</body>
+</html>
